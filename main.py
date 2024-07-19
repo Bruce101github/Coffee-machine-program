@@ -12,17 +12,22 @@ class Main(Coin, Coffee):
         self.prompt = input("what would you like?(espresso/latte/cuppuccino): ").lower()
     
     def proccess_order(self):
-        sufficient = super().check_resources(self.prompt)
-        if sufficient is True:
-            change = super().proccess_coins(self.prompt)
-            if change >= 0:
-                super().make_coffee(self.prompt)
-                if change > 0:
-                    print(f"Here is ${str(format(change, ".2f"))} dollars in change.")
+        if (self.prompt == "espresso" or 
+            self.prompt == "latte" or 
+            self.prompt == "cappuccino"):
+            sufficient = super().check_resources(self.prompt)
+            if sufficient is True:
+                change = super().proccess_coins(self.prompt)
+                if change >= 0:
+                    super().make_coffee(self.prompt)
+                    if change > 0:
+                        print(f"Here is ${str(format(change, ".2f"))} dollars in change.")
+                else:
+                    print("Sorry that's not enough money. Money refunded.")
             else:
-                print("Sorry that's not enough money. Money refunded.")
-        else:
-            print(sufficient)
+                print(sufficient)
+        elif self.prompt == "report":
+            super().report_resources()
            
 
 active = True
