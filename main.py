@@ -2,6 +2,8 @@ from resources import Resource
 from coin_processing import Coin
 from coffee import Coffee
 
+active = True
+
 class Main(Coin, Coffee):
     """This controls the main program"""
 
@@ -28,16 +30,19 @@ class Main(Coin, Coffee):
                 print(sufficient)
         elif self.prompt == "report":
             super().report_resources()
-           
+        elif self.prompt == "off":
+            active = False
+        else:
+            print("Unknown command. Try again!")
 
-active = True
+
 
 while active == True:
     coffee = Main()
     coffee.update_resources("water", 500)
     coffee.update_resources("milk", 500)
     coffee.update_resources("coffee", 500)
-
     coffee.proccess_order()
-
+    if coffee.prompt == "off":
+        break
 
