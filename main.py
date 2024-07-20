@@ -11,9 +11,9 @@ class Main(Coin, Coffee):
         """Initialization"""
         Coin.__init__(self)
         Coffee.__init__(self)
-        self.prompt = input("what would you like?(espresso/latte/cuppuccino): ").lower()
     
     def proccess_order(self):
+        self.prompt = input("what would you like?(espresso/latte/cuppuccino): ").lower()
         if (self.prompt == "espresso" or 
             self.prompt == "latte" or 
             self.prompt == "cappuccino"):
@@ -36,12 +36,12 @@ class Main(Coin, Coffee):
             print("Unknown command. Try again!")
 
 
+coffee = Main()
+coffee.update_resources("water", 500)
+coffee.update_resources("milk", 500)
+coffee.update_resources("coffee", 500)
 
 while active == True:
-    coffee = Main()
-    coffee.update_resources("water", 500)
-    coffee.update_resources("milk", 500)
-    coffee.update_resources("coffee", 500)
     coffee.proccess_order()
     if coffee.prompt == "off":
         break
